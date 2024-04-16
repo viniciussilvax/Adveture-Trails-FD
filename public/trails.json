@@ -1,0 +1,26 @@
+{
+    "trails": [
+        {
+            "name": "trilha da costa da lagoa",
+            "city": "florianópolis",
+            "state": "SC",
+            "duration": "120",
+            "distance": "4",
+            "difficulty": "iniciante",
+            "created": "bruno",
+            "imageUrl": "https://s3-alpha-sig.figma.com/img/f422/d88d/999fbb96c40a9f69cb4cfff678dffd34?Expires=1713139200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=bzmy9TwUuVGK~833SUVb2B4R3yk1IFcB9hcVC-AnaVSeRxyXm06n3NsqXBEicGR6ogNsPsqgoWOTUhamcBc~QfXT3F~QedgoVXRQzrNJvph-pYQB5VcGuYdRKLRxW3RHxHp1gLMAIQ0brNepGG4M6SBojEvHxngMejp17UiWNQVdJ4I4n9Avke5l5O9rvskvv0HUeK3--jrCdc692FkvTwOVlf59mWH53GkG06aVoElKafRorbh--8p2QHCxRTcknB8bmwPAwt8hR3Qm0CxWUxOldsubae~LpZwXjhkcEVwlhr8kPeXkxQOnfyNfzVXC3lv~TZF-pEke75M8iezTuA__",
+            "type": "corrida"
+            },
+            {
+            "name": "trilha das pedras",
+            "city": "florianópolis",
+            "state": "RS",
+            "duration": "320",
+            "distance": "9",
+            "difficulty": "intermediário",
+            "created": "vinícius",
+            "imageUrl": "https://st.depositphotos.com/1923173/3329/i/950/depositphotos_33295563-stock-photo-stone-stairs.jpg",
+            "type": "escalada"
+            }
+    ]
+}
