@@ -2,47 +2,42 @@ import { useContext, useState } from "react";
 import { Button, ButtonsContainer, InputContainer, InputDoubleContainer, RegisterContainer, TitleRegister } from "./RegisterPageStyle";
 import { globalContext } from "../../context/globalContext"
 import { useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
 
 export default function RegisterPage() {
 
-    const { trails, setTrails } = useContext(globalContext)
+    const {register, 
+        handleSubmit,
+        formState: { errors}
+        
+    } = useForm()
 
-    const [name, setName] = useState("")
-    const [duration, setDuration] = useState("")
-    const [route, setRoute] = useState("")
-    const [city, setCity] = useState("")
-    const [state, setState] = useState("")
-    const [created, setCreated] = useState("")
-    const [difficulty, setDifficulty] = useState("")
-    const [type, setType] = useState("")
-    const [imageUrl, setImageUrl] = useState("")
+    const { trails, setTrails } = useContext(globalContext)
 
     const navigate = useNavigate()
 
-    function regiter(e) {
-        e.preventDefault()
-        const newTrails = { name, duration, route, city, state, created, difficulty, imageUrl }
-
-        setTrails([...trails, newTrails])
-
+    function onSubmit (newTrail) {
+        setTrails([...trails, newTrail])
         navigate('/explorar-trilhas')
     }
 
     return (
         <RegisterContainer>
-            <form onSubmit={regiter}>
+            <form onSubmit={handleSubmit(onSubmit)}>
                 <TitleRegister>Cadastro de nova trilha</TitleRegister>
                 <InputContainer style={{ input: { width: "592px" } }}>
                     <label htmlFor="name">Nome da trilha</label>
                     <input
                         type="text"
-                        id="name"
                         placeholder="digite o nome da trilha"
-                        required
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-
+                        {
+                            ...register("name",
+                            {required: "Por favor, insira o nome da trilha"}
+                        )
+                            
+                        }
                     />
+                {errors.name && <p>{errors.name.message}</p>}
                 </InputContainer>
 
                 <InputDoubleContainer>
@@ -50,50 +45,58 @@ export default function RegisterPage() {
                         <label htmlFor="duration">Duração estimada (min)</label>
                         <input
                             type="text"
-                            id="duration"
                             placeholder="digite a duração em minutos"
                             required
-
-                            value={duration}
-                            onChange={(e) => setDuration(e.target.value)}
+                            {
+                                ...register("duration",
+                                {required: "Por favor, insira a duração da trilha"}
+                            )
+                                
+                            }
                         />
                     </InputContainer>
                     <InputContainer style={{ width: "286px" }}>
-                        <label htmlFor="route">Trajeto (km)</label>
+                        <label htmlFor="distance">Trajeto (km)</label>
                         <input
                             type="text"
-                            id="route"
                             placeholder="digite a distância em km"
                             required
-
-                            value={route}
-                            onChange={(e) => setRoute(e.target.value)}
+                            {
+                                ...register("distance",
+                                {required: "Por favor, insira a duração da trilha"}
+                            )
+                                
+                            }
                         />
                     </InputContainer>
                 </InputDoubleContainer>
-
+                   
                 <InputDoubleContainer>
                     <InputContainer style={{ width: "286px" }}>
                         <label htmlFor="city">Cidade</label>
                         <input
                             type="text"
-                            id="city"
                             placeholder="digite o nome da cidade"
                             required
-
-                            value={city}
-                            onChange={(e) => setCity(e.target.value)}
+                            {
+                                ...register("city",
+                                {required: "Por favor, insira a cidade da trilha"}
+                            )
+                                
+                            }
                         />
                     </InputContainer>
                     <InputContainer style={{ width: "286px" }}>
                         <label htmlFor="state">Estado</label>
                         <select
                             name="state"
-                            id="state"
                             required
-
-                            value={state}
-                            onChange={(e) => setState(e.target.value)}
+                            {
+                                ...register("state",
+                                {required: "Por favor, insira a duração da trilha"}
+                            )
+                                
+                            }
                         >
                             <option value="SC">SC</option>
                             <option value="RS">RS</option>
@@ -106,24 +109,28 @@ export default function RegisterPage() {
                     <InputContainer style={{ width: "286px" }}>
                         <label htmlFor="user">Nome completo usuário</label>
                         <input
-                            type="text"
-                            id="user"
+                            type="created"
                             placeholder="seu nome completo"
                             required
-
-                            value={created}
-                            onChange={(e) => setCreated(e.target.value)}
+                            {
+                                ...register("created",
+                                {required: "Por favor, insira a duração da trilha"}
+                            )
+                                
+                            }
                         />
                     </InputContainer>
                     <InputContainer style={{ width: "286px" }}>
                         <label htmlFor="difficulty">Dificuldade</label>
                         <select
                             name="difficulty"
-                            id="difficulty"
                             required
-
-                            value={difficulty}
-                            onChange={(e) => setDifficulty(e.target.value)}
+                            {
+                                ...register("difficulty",
+                                {required: "Por favor, insira a duração da trilha"}
+                            )
+                                
+                            }
                         >
                             <option value="iniciante">Iniciante</option>
                             <option value="intermediario">Indermediário</option>
@@ -133,14 +140,16 @@ export default function RegisterPage() {
                 </InputDoubleContainer>
 
                 <InputContainer style={{ input: { width: "592px" } }}>
-                    <label htmlFor="trail-type">Tipo de trilha</label>
+                    <label htmlFor="type">Tipo de trilha</label>
                     <select
-                        name="trail-type"
-                        id="trail-type"
+                        name="type"
                         required
-
-                        value={type}
-                        onChange={(e) => setType(e.target.value)}
+                        {
+                            ...register("type",
+                            {required: "Por favor, insira a duração da trilha"}
+                        )
+                            
+                        }
                     >
                         <option value="caminhada">Caminhada / trekking</option>
                         <option value="corrida">Corrida</option>
@@ -148,15 +157,16 @@ export default function RegisterPage() {
                     </select>
                 </InputContainer>
                 <InputContainer style={{ input: { width: "592px" } }}>
-                    <label htmlFor="name-trail">URL imagem da trilha</label>
+                    <label htmlFor="imageUrl">URL imagem da trilha</label>
                     <input
                         type="text"
-                        id="name-trail"
                         placeholder="insira um link de uma imagem da trilha"
-                        required
-
-                        value={imageUrl}
-                        onChange={(e) => setImageUrl(e.target.value)}
+                        {
+                            ...register("imageUrl",
+                            {required: "Por favor, insira a duração da trilha"}
+                        )
+                            
+                        }
 
                     />
                 </InputContainer>
